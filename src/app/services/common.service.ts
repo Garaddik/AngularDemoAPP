@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, BehaviorSubject } from 'rxjs';
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -30,12 +31,12 @@ export class CommonService{
     */ 
 
     getOrderList():Observable<any>{
-        return this.http.get('https://order-service.apps.fnd-non-prod.canvas.nat.bt.com/api/v1/orders');
+        return this.http.get(environment.backendURL + '/api/v1/orders');
     }
 
     postData(data: any): Observable<any> {
         var headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
-        return this.http.post("https://order-service.apps.fnd-non-prod.canvas.nat.bt.com/api/v1/orders",data,{headers:headers});
+        return this.http.post(environment.backendURL + '/api/v1/orders',data,{headers:headers});
     }
 }
